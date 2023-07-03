@@ -5,3 +5,4 @@
 /site_parse_server/DataBase.db
 /site_parse_server/DataBase.db-shm
 /site_parse_server/DataBase.db-wal
+/.vs
