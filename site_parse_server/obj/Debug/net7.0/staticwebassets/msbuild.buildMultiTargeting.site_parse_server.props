@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/site_parse_server.props" />
+</Project>

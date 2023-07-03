@@ -1,0 +1,7 @@
+/bin
+/obj
+./site_parse_server/bin
+./site_parse_server/obj
+./site_parse_server/DataBase.db
+./site_parse_server/DataBase.db-shm
+./site_parse_server/DataBase.db-wal

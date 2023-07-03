@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+  <ItemGroup>
+    <None Remove="Services\" />
+    <None Remove="Repositories\" />
+    <None Remove="Models\Authorization\" />
+    <None Remove="Repositories\Interfaces\" />
+    <None Remove="Responses\" />
+    <None Remove="Enums\" />
+    <None Remove="Responses\Interfaces\" />
+    <None Remove="Services\Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Models\Authorization\" />
+    <Folder Include="Repositories\Interfaces\" />
+    <Folder Include="Responses\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Responses\Interfaces\" />
+    <Folder Include="Services\Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.8">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.8" />
+  </ItemGroup>
+</Project>
