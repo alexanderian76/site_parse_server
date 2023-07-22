@@ -17,15 +17,18 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly IUserService _userService;
+    private readonly IRequestService _requestService;
 
-    public HomeController(ILogger<HomeController> logger, IUserService userService)
+    public HomeController(ILogger<HomeController> logger, IUserService userService, IRequestService requestService)
     {
         _logger = logger;
         _userService = userService;
+        _requestService = requestService;
     }
 
     public IActionResult Index()
     {
+        _logger.Log(LogLevel.Information, "Index page enter");
         return View();
     }
 
@@ -45,6 +48,15 @@ public class HomeController : Controller
 
         ms.Position = 0;
         return Ok(ms);
+    }
+
+
+    [HttpPost]
+    [Route("request")]
+    public async Task<IActionResult> SendRequest([FromBody] Request request)
+    {
+        await _requestService.Create(request);
+        return Ok("Request created");
     }
 
     [Authorize]

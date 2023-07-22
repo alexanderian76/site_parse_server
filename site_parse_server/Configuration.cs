@@ -21,8 +21,9 @@ public class Configuration
         services.AddControllers();
         
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IRequestRepository, RequestRepository>();
         services.AddScoped<IUserService, UserService>();
-        
+        services.AddScoped<IRequestService, RequestService>();
         
         
         /* services.AddMvc().AddJsonOptions(options => {
