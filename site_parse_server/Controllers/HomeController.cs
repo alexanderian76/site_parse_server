@@ -99,7 +99,24 @@ public class HomeController : Controller
         var response = await _userService.Create(new User() { Login = user.Login, Password = user.Password, Tasks = new List<ParseTask>() { new ParseTask() { Description = "Test task" } } });
         //ms.Close();
         if (response.StatusCode == global::StatusCode.OK)
-            return Ok(response);
+        {
+            var claims = new List<Claim> { new Claim(ClaimTypes.Name, user.Login) };
+            // if (data.Data.Where(u => u.Login == userName).Count() > 0)
+            {
+                // return new BadRequestObjectResult("User exists");
+            }
+            // создаем JWT-токен
+            var jwt = new JwtSecurityToken(
+                    issuer: AuthOptions.ISSUER,
+            audience: AuthOptions.AUDIENCE,
+            claims: claims,
+                    expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)),
+                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
+            //await HttpContext.Response.BodyWriter.WriteAsync(Encoding.Default.GetBytes(new JwtSecurityTokenHandler().WriteToken(jwt)));
+            
+            return Ok(new JwtSecurityTokenHandler().WriteToken(jwt));
+        }
+            //return Ok(response);
         else return BadRequest(response);
         
     }
